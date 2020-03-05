@@ -37,7 +37,7 @@ int		print_precision(t_type type)
 	return (count);
 }
 
-int		ft_print_int(t_type type, LL elem)
+int		ft_print_int(t_type type, LL_int elem)
 {
 	int count;
 	int i;
@@ -131,12 +131,12 @@ int		ft_print_pointer(void* elem, t_type type)
 
 }
 
-int		ft_int_specifier(t_type type, LL elem)
+int		ft_int_specifier(t_type type, LL_int elem)
 {
-	if (type.size == 1) // h
+	if (type.size == H) // h
 		ft_print_int(type, (short)elem);
-	// else if (type.size == )
-
-	// }
-	ft_print_int(type, elem);
+	else if (type.size == HH)
+		ft_print_int(type, (char)elem);
+	else if (type.size == L)
+		ft_print_int(type, (int)elem);
 }

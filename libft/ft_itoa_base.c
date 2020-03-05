@@ -1,6 +1,6 @@
 #include "libft.h"
 
-int     ft_intlen_base(int64_t value, int base)
+int     ft_intlen_base(LL_int value, int base)
 {
     int i;
 
@@ -23,7 +23,7 @@ char    print_nbr(int value)
     return (str[value]);
 }
 
-char    *ft_itoa_base(int64_t value, int base)
+char    *ft_itoa_base(LL_int value, int base)
 {
     char            *str;
     int             count;
@@ -31,7 +31,7 @@ char    *ft_itoa_base(int64_t value, int base)
     count = ft_intlen_base(value, base);
     str = malloc(sizeof(char) * (count + 1));
     value = value < 0 ? (value * -1) : value;
-    base = (int64_t)base;
+    base = (LL_int)base;
     str[count] = '\0';
     while (value > base)
     {

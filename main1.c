@@ -15,15 +15,15 @@ void	ft_parse_size(const char *format, t_type *type)
 
 	i = 0;
 	if (format[i] == 'h' && format[i + 1] != 'h')
-		type->size = 1;
+		type->size = H;
 	if (format[i] == 'h' && format[i + 1] == 'h')
-		type->size = 2;
+		type->size = HH;
 	if (format[i] == 'l' && format[i + 1] != 'l')
-		type->size = 3;
+		type->size = L;
 	if (format[i] == 'l' && format[i + 1] == 'l')
-		type->size = 4;
+		type->size = LL;
 	if (format[i] == 'L')
-		type->size = 5;
+		type->size = L_big;
 }
 
 int		ft_skip_size(int size)
@@ -31,9 +31,9 @@ int		ft_skip_size(int size)
 	int		i;
 
 	i = 0;
-	if (size == 2 || size == 4)
+	if (size == HH || size == LL)
 		i += 2;
-	if ((size != 2 || size != 4) && size)
+	if ((size != HH || size != LL) && size)
 		++i;
 	return (i);
 }
@@ -139,7 +139,7 @@ void	ft_create_typestruct(t_type *type)
 void	ft_print_format(t_type *type)
 {
 	if (type->type == 'd' || type->type == 'i')
-		type->print += ft_int_specifier(*type, va_arg(type->vl, LL));
+		type->print += ft_int_specifier(*type, va_arg(type->vl, LL_int));
 	// else if (type->type == 'o' || type->type == 'u'
 	// || type->type == 'x' || type->type == 'X')
 	// 	type->print += ft_unsig_int_specifier(*type, va_arg(type->vl, ULL));
@@ -183,13 +183,13 @@ int		main()
 	char	*types;
 	int		c;
 
-	c = 1;
+	c = -1;
 	types = "abcdefghijkl";
 	// int *t = &c;
 	// printf("test1 %d\n", ft_printf("%-3.5d %d %d\n", 123, 12, 13));
 	// printf("test1 %d\n", printf("%-3.5d %d %d\n", 123, 12, 13));
 	// printf("test2 %d\n", ft_printf("%-7.5d\n", -1234567));
-	printf("test2 %d\n", ft_printf("%-7.5d\n", -1234567));
+	printf("test2 %d\n", ft_printf("%d\n", H));
 	// printf("%d\n", ft_printf("print %-0006.05s, %0006s\n", types, types));
 	// printf("%d\n", printf("print %-0006.05s, %0006s\n", types, types));
 	// printf("%d\n", ft_printf("%0002.6d\n", (short)-120000));
