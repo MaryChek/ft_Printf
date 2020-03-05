@@ -4,14 +4,11 @@ int     ft_intlen_base(LL_int value, int base)
 {
     int i;
 
-    i = 0;
+    i = 1;
     if (value < 0 && base == 10)
         i++;
-    while (value)
-    {
-        value /= base;
+    while (value /= base)
         i++;
-    }
     return (i);
 }
 

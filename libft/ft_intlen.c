@@ -16,9 +16,7 @@ size_t	ft_intlen(LL_int n)
 {
 	size_t	i;
 
-	i = 0;
-	if (!n)
-		i = 1;
+	i = (n <= 0) ? 1 : 0;
 	while (n)
 	{
 		n = n / 10;

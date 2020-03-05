@@ -139,7 +139,7 @@ void	ft_create_typestruct(t_type *type)
 void	ft_print_format(t_type *type)
 {
 	if (type->type == 'd' || type->type == 'i')
-		type->print += ft_int_specifier(*type, va_arg(type->vl, LL_int));
+		type->print += ft_int_specifier(*type, va_arg(type->vl, long long));
 	// else if (type->type == 'o' || type->type == 'u'
 	// || type->type == 'x' || type->type == 'X')
 	// 	type->print += ft_unsig_int_specifier(*type, va_arg(type->vl, ULL));
@@ -188,8 +188,8 @@ int		main()
 	// int *t = &c;
 	// printf("test1 %d\n", ft_printf("%-3.5d %d %d\n", 123, 12, 13));
 	// printf("test1 %d\n", printf("%-3.5d %d %d\n", 123, 12, 13));
-	// printf("test2 %d\n", ft_printf("%-7.5d\n", -1234567));
-	printf("test2 %d\n", ft_printf("%d\n", H));
+	printf("test2 %d\n", ft_printf("%d\n", 0));
+	printf("test2 %d\n", printf("%d\n", 0));
 	// printf("%d\n", ft_printf("print %-0006.05s, %0006s\n", types, types));
 	// printf("%d\n", printf("print %-0006.05s, %0006s\n", types, types));
 	// printf("%d\n", ft_printf("%0002.6d\n", (short)-120000));

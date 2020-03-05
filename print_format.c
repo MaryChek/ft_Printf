@@ -133,10 +133,19 @@ int		ft_print_pointer(void* elem, t_type type)
 
 int		ft_int_specifier(t_type type, LL_int elem)
 {
+	int count;
+
 	if (type.size == H) // h
-		ft_print_int(type, (short)elem);
+		count = ft_print_int(type, (short)elem);
 	else if (type.size == HH)
-		ft_print_int(type, (char)elem);
+		count = ft_print_int(type, (char)elem);
 	else if (type.size == L)
-		ft_print_int(type, (int)elem);
+		count = ft_print_int(type, (long)elem);
+	else if (type.size == LL)
+		count = ft_print_int(type, (long long)elem);
+	else if (type.size == 0)
+		count = ft_print_int(type, (int)elem);
+	else
+		count = ft_print_int(type, elem);
+	return (count);
 }
