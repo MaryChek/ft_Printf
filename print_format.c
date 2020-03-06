@@ -40,7 +40,6 @@ int		print_precision(t_type type)
 int		ft_print_int(t_type type, LL_int elem)
 {
 	int count;
-	int i;
 
 	count = 0;
 	type.length = ft_intlen(elem);

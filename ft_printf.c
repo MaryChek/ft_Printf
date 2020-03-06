@@ -188,8 +188,8 @@ int		main()
 	// int *t = &c;
 	// printf("test1 %d\n", ft_printf("%-3.5d %d %d\n", 123, 12, 13));
 	// printf("test1 %d\n", printf("%-3.5d %d %d\n", 123, 12, 13));
-	printf("test2 %d\n", ft_printf("%d\n", 0));
-	printf("test2 %d\n", printf("%d\n", 0));
+	printf("test2 %d\n", ft_printf(""));
+	printf("test2 %d\n", printf(""));
 	// printf("%d\n", ft_printf("print %-0006.05s, %0006s\n", types, types));
 	// printf("%d\n", printf("print %-0006.05s, %0006s\n", types, types));
 	// printf("%d\n", ft_printf("%0002.6d\n", (short)-120000));
