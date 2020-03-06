@@ -14,7 +14,7 @@ typedef unsigned long long ULL_int;
 # define H 1
 # define HH 2
 # define L 3
-# define LL 1
+# define LL 4
 # define L_big 5
 
 typedef struct		s_type
@@ -31,6 +31,7 @@ typedef struct		s_type
 	int			length;
 }					t_type;
 
+
 int				ft_print_int(t_type type, LL_int elem);
 int				ft_print_float(float elem, t_type type);
 int				ft_print_char(char elem, t_type type);
@@ -38,6 +39,11 @@ int				ft_print_string(char* elem, t_type type);
 int				ft_print_pointer(void* elem, t_type type);
 int				ft_int_specifier(t_type type, LL_int num);
 int				ft_unsig_int_specifier(t_type type, ULL_int num);
+int				ft_atoi(const char *s);
+int				ft_skip_size(int size);
+int				ft_zero_skip(const char *format);
+int				ft_parse_type(const char *format, t_type *type);
+void			error(int x);
 
 #endif
 

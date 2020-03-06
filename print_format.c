@@ -14,6 +14,7 @@ int		print_spase(t_type type)
 {
 	int i;
 	int count;
+	char c;
 
 	count = 0;
 	if (type.precision > type.length)
@@ -21,7 +22,10 @@ int		print_spase(t_type type)
 	else
 		i = type.width - type.length;
 	if (i > 0)
-		count = print_n_char(i, ' ');
+	{
+		c = type.precision < 0 ? '0' : ' ';
+		count = print_n_char(i, c);
+	}
 	return (count);
 }
 
@@ -32,7 +36,7 @@ int		print_precision(t_type type)
 
 	count = 0;
 	i = type.precision - type.length;
-	if (i > 0)
+	if (i > 0 )
 		count = print_n_char(i, '0');
 	return (count);
 }
@@ -40,6 +44,7 @@ int		print_precision(t_type type)
 int		ft_print_int(t_type type, LL_int elem)
 {
 	int count;
+	int i;
 
 	count = 0;
 	type.length = ft_intlen(elem);
@@ -110,7 +115,10 @@ int		ft_print_string(char* elem, t_type type)
 	char *str;
 
 	count = 0;
-	str = type.precision ? ft_strsub(elem, 0, type.precision) : elem;
+	if (elem != NULL)
+		str = type.precision >= 0 ? ft_strsub(elem, 0, type.precision) : elem;
+	else 
+		str = type.precision >= 0 ? ft_strsub("(null)\0", 0, type.precision) : "(null)\0";
 	if (type.flag == '-')
 	{
 		ft_putstr(str);
@@ -121,7 +129,7 @@ int		ft_print_string(char* elem, t_type type)
 		count += ft_put_space(str, type);
 		ft_putstr(str);
 	}
-	type.precision ? ft_strdel(&str) : 0;
+	(type.precision >= 0 && elem != NULL) ? ft_strdel(&str) : 0;
 	return (count);
 }
 
@@ -132,19 +140,12 @@ int		ft_print_pointer(void* elem, t_type type)
 
 int		ft_int_specifier(t_type type, LL_int elem)
 {
-	int count;
-
 	if (type.size == H) // h
-		count = ft_print_int(type, (short)elem);
+		return (ft_print_int(type, (short)elem));
 	else if (type.size == HH)
-		count = ft_print_int(type, (char)elem);
-	else if (type.size == L)
-		count = ft_print_int(type, (long)elem);
-	else if (type.size == LL)
-		count = ft_print_int(type, (long long)elem);
-	else if (type.size == 0)
-		count = ft_print_int(type, (int)elem);
+		return (ft_print_int(type, (char)elem));
+	else if (type.size == L || type.size == LL)
+		return (ft_print_int(type, (long int)elem));
 	else
-		count = ft_print_int(type, elem);
-	return (count);
+		return (ft_print_int(type, (int)elem));
 }

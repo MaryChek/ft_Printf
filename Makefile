@@ -1,12 +1,10 @@
-
 NAME = libftprintf.a
 LIBFTA = libft.a
-SRCS = ft_printf.c print_format.c
+SRCS = main1.c print_format.c ft_skip.c ft_parse.c
 OBJ = $(SRCS:.c=.o)
 LIBDIR = libft/
 LIBNAME = libft/libft.a
 #CFLAGS = -Wall -Wextra -Werror$(CFLAGS)
-
 all: $(NAME)
 
 $(OBJ): %.o: %.c
