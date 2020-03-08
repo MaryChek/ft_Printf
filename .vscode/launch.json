@@ -7,10 +7,22 @@
 		{
 			"type": "lldb",
 			"request": "launch",
-			"name": "Debug",
-			"program": "${workspaceFolder}/a.out",
+			"name": "Launch",
+			"program": "${workspaceFolder}/test",
 			"args": [],
 			"cwd": "${workspaceFolder}"
+		},
+		{
+			"name": "(lldb) Launch",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/a.out",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb"
 		}
 	]
 }

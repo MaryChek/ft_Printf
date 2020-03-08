@@ -1,19 +1,26 @@
 NAME = libftprintf.a
+
 LIBFTA = libft.a
-SRCS = main1.c print_format.c ft_skip.c ft_parse.c
+
+SRCS = main1.c print_format.c ft_skip.c ft_parse.c ft_atoi.c
+
 OBJ = $(SRCS:.c=.o)
+
 LIBDIR = libft/
+
 LIBNAME = libft/libft.a
+
 #CFLAGS = -Wall -Wextra -Werror$(CFLAGS)
+
 all: $(NAME)
 
-$(OBJ): %.o: %.c
-	@gcc -c  $< -o $@ 
+%.o: %.c
+	gcc -c $< -o $@
 
 $(NAME): $(OBJ)
 	@make -C $(LIBDIR)
 	@cp libft/libft.a ./$(NAME)
-	@ar rc $(NAME) $(OBJ)
+	ar rc $(NAME) $(OBJ)
 
 clean:
 	@/bin/rm -f $(OBJ)
@@ -21,7 +28,7 @@ clean:
 	@echo OBJECTS FILES HAS BEEN DELETED.
 
 test:
-	@gcc *.c -L libft -lft -o test
+	gcc main1.c print_format.c ft_skip.c ft_parse.c ft_atoi.c -L libft -lft -g
 
 fclean: clean
 	@/bin/rm -f $(NAME)

@@ -29,6 +29,7 @@ int		ft_modifier_processing(t_type *type, const char *format, int count_skip)
 		if (type->precision != 0)
 			count_skip += ft_intlen(type->precision);
 	}
+
 	else
 	{
 		val = 0;
@@ -79,6 +80,6 @@ int		ft_parse_type(const char *format, t_type *type)
 		return (i);
 	}
 	else
-		error(2);
+		error(2, type->vl);
 	return (0);
 }

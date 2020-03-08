@@ -23,21 +23,36 @@ int		print_spase(t_type type)
 		i = type.width - type.length;
 	if (i > 0)
 	{
-		c = type.precision < 0 ? '0' : ' ';
+		if (type.flag == '+')
+			i--;
+		c = (type.precision < 0 && type.flag == '0') ? '0' : ' ';
 		count = print_n_char(i, c);
 	}
 	return (count);
 }
 
-int		print_precision(t_type type)
+int		print_precision_and_elem(t_type type, LL_int elem)
 {
 	int i;
 	int count;
 
 	count = 0;
 	i = type.precision - type.length;
-	if (i > 0 )
-		count = print_n_char(i, '0');
+	if (type.flag == '+' && type.precision)
+	{
+		count += print_n_char(1, elem >= 0 ? '+' : '-');
+		elem = elem >= 0 ? elem : elem * -1;
+	}
+	if (i > 0)
+		count += print_n_char(i, '0');
+	if (type.precision || elem)
+		ft_putstr(ft_itoa_base(elem, 10));
+	if (!elem && !type.precision)
+	{
+		if (type.flag == '+')
+			count += print_n_char(1, ' ');
+		print_n_char(1, type.flag == '+' ? '+' : ' ');
+	}
 	return (count);
 }
 
@@ -50,15 +65,13 @@ int		ft_print_int(t_type type, LL_int elem)
 	type.length = ft_intlen(elem);
 	if (type.flag == '-')
 	{
-		count += print_precision(type);
-		ft_putstr(ft_itoa_base(elem, 10));
+		count += print_precision_and_elem(type, elem);
 		count += print_spase(type);
 	}
 	else
 	{
 		count += print_spase(type);
-		count += print_precision(type);
-		ft_putstr(ft_itoa_base(elem, 10));
+		count += print_precision_and_elem(type, elem);
 	}
 	return (count + type.length);
 }
@@ -68,17 +81,20 @@ int		ft_print_float(float elem, t_type type)
 }
 int		ft_print_char(char elem, t_type type)
 {
+	char c;
+
 	if (type.width)
 	{
-		if (type.flag == '0')
-		{
-			print_n_char(type.width - 1, '0');
-			write(1, &elem, 1);
-		}
-		else if (type.flag == '-')
+		if (type.flag == '-')
 		{
 			write(1, &elem, 1);
 			print_n_char(type.width - 1, ' ');
+		}
+		else
+		{
+			c = (type.flag == '0') ? '0' : ' ';
+			print_n_char(type.width - 1, c);
+			write(1, &elem, 1);
 		}
 	}
 	else
@@ -99,11 +115,7 @@ int		ft_put_space(char* elem, t_type type)
 	if (type.width > 0 && type.width > (stlen = ft_strlen(elem)))
 	{
 		c = (type.flag == '0') ? '0' : ' ';
-		while (stlen++ < type.width)
-		{
-			write(1, &c, 1);
-			count++;
-		}
+		count += print_n_char(type.width - stlen, c);
 	}
 	count += ft_strlen(elem);
 	return (count);

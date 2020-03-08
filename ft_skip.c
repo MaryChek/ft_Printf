@@ -21,3 +21,4 @@ int		ft_zero_skip(const char *format)
 		count++;
 	return (count);
 }
+

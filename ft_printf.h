@@ -43,7 +43,7 @@ int				ft_atoi(const char *s);
 int				ft_skip_size(int size);
 int				ft_zero_skip(const char *format);
 int				ft_parse_type(const char *format, t_type *type);
-void			error(int x);
+void			error(int x, va_list vl);
 
 #endif
 
